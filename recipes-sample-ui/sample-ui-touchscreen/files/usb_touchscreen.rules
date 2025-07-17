@@ -1,0 +1,3 @@
+SUBSYSTEM=="input", ATTRS{idVendor}=="0484", ATTRS{idProduct}=="5750", ENV{DEVICE}="PRIMARY_TOUCHSCREEN"
+
+ENV{DEVICE}=="PRIMARY_TOUCHSCREEN", SYMLINK+="input/touchscreen0"
