@@ -8,6 +8,8 @@ namespace msg {
 
   typedef struct {
     std::string wlan_state;
+    std::string api_state;
+    std::string core_state;
     std::string msg;
   } msg_t;
 

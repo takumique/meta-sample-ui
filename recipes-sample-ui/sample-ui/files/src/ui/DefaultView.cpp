@@ -65,8 +65,28 @@ void DefaultView::Initialize(uint32_t width, uint32_t height, uint32_t dpi) {
   lv_obj_set_style_border_width(container_content, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_border_color(container_content, lv_color_white(), LV_PART_MAIN);
 
+  lv_obj_t * container_server_state = lv_obj_create(container_content);
+  lv_obj_set_size(container_server_state, width - 40, LV_SIZE_CONTENT);
+  lv_obj_align_to(container_server_state, container_content, LV_ALIGN_TOP_LEFT, 20, 20);
+  lv_obj_set_flex_flow(container_server_state, LV_FLEX_FLOW_COLUMN);
+  lv_obj_set_flex_align(container_server_state, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+
+  // api
+  label_api_state = lv_label_create(container_server_state);
+  lv_label_set_text(label_api_state, "");
+
+  // core
+  label_core_state = lv_label_create(container_server_state);
+  lv_label_set_text(label_core_state, "");
+
+  lv_obj_t * container_message = lv_obj_create(container_content);
+  lv_obj_set_size(container_message, width - 40, LV_SIZE_CONTENT);
+  lv_obj_align_to(container_message, container_server_state, LV_ALIGN_OUT_BOTTOM_LEFT, 20, 20);
+  lv_obj_set_flex_flow(container_message, LV_FLEX_FLOW_COLUMN);
+  lv_obj_set_flex_align(container_message, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+
   // raw message
-  label_msg = lv_label_create(container_content);
+  label_msg = lv_label_create(container_message);
   lv_label_set_text(label_msg, "");
 }
 
@@ -97,6 +117,16 @@ void DefaultView::UpdateClock(void) {
 
 void DefaultView::SetWlanState(std::string &wlan_state) {
   lv_label_set_text(label_connectivity, wlan_state.c_str());
+}
+
+void DefaultView::SetApiState(std::string &api_state) {
+  std::string display_text = "API: " + api_state;
+  lv_label_set_text(label_api_state, display_text.c_str());
+}
+
+void DefaultView::SetCoreState(std::string &core_state) {
+  std::string display_text = "CORE: " + core_state;
+  lv_label_set_text(label_core_state, display_text.c_str());
 }
 
 void DefaultView::SetMsg(std::string &msg) {

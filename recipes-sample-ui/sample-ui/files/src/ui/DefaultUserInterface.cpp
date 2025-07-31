@@ -22,6 +22,12 @@ void DefaultUserInterface::OnReceive(std::string &message_str) {
   if(message.wlan_state != "__na__") {
     default_view->SetWlanState(message.wlan_state);
   }
+  if(message.api_state != "__na__") {
+    default_view->SetApiState(message.api_state);
+  }
+  if(message.core_state != "__na__") {
+    default_view->SetCoreState(message.core_state);
+  }
   if(message.msg != "__na__") {
     default_view->SetMsg(message.msg);
   }

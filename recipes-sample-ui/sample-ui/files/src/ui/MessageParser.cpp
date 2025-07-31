@@ -15,6 +15,16 @@ namespace msg {
       m.wlan_state = "__na__";
     }
     try {
+      j.at("api").get_to(m.api_state);
+    } catch(std::exception &e) {
+      m.api_state = "__na__";
+    }
+    try {
+      j.at("core").get_to(m.core_state);
+    } catch(std::exception &e) {
+      m.core_state = "__na__";
+    }
+    try {
       j.at("msg").get_to(m.msg);
     } catch(std::exception &e) {
       m.msg = "__na__";

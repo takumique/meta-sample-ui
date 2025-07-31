@@ -13,11 +13,15 @@ public:
   void Initialize(uint32_t width, uint32_t height, uint32_t dpi);
   void OnDraw(void);
   void SetWlanState(std::string &wlan_state);
+  void SetApiState(std::string &api_state);
+  void SetCoreState(std::string &core_state);
   void SetMsg(std::string &msg);
 private:
   std::mutex &draw_mutex;
   lv_obj_t *label_clock;
   lv_obj_t *label_connectivity;
+  lv_obj_t *label_api_state;
+  lv_obj_t *label_core_state;
   lv_obj_t *label_msg;
   void UpdateClock(void);
 };
