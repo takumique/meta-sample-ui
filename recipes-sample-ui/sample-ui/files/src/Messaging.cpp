@@ -66,16 +66,20 @@ void Messaging::RegisterReceiver(MessageReceivable *receivable) {
 }
 
 int Messaging::Connect(void) {
-  auto connOpts = mqtt::connect_options_builder::v3()
-    .keep_alive_interval(std::chrono::seconds(30))
-    .automatic_reconnect(std::chrono::seconds(2), std::chrono::seconds(30))
-    .clean_session(false)
-    .finalize();
-  mqtt::connect_response rsp = client->connect(connOpts);
-  if (!rsp.is_session_present()) {
-    client->subscribe(MQTT_TOPIC_STATE, MQTT_QOS);
+  try {
+    auto connOpts = mqtt::connect_options_builder::v3()
+      .keep_alive_interval(std::chrono::seconds(30))
+      .automatic_reconnect(std::chrono::seconds(2), std::chrono::seconds(30))
+      .clean_session(false)
+      .finalize();
+    mqtt::connect_response rsp = client->connect(connOpts);
+    if (!rsp.is_session_present()) {
+      client->subscribe(MQTT_TOPIC_STATE, MQTT_QOS);
+    }
+    LOG("Successfully connected to MQTT broker\n");
+  } catch(std::exception &e) {
+    return -1;
   }
-  LOG("Successfully connected to MQTT broker\n");
   return 0;
 }
 
