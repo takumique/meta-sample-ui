@@ -1,0 +1,9 @@
+[Unit]
+Description=Sample UI
+After=mosquitto.service
+
+[Service]
+ExecStart=/usr/bin/run-sample-ui.sh
+
+[Install]
+WantedBy=multi-user.target

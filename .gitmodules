@@ -1,0 +1,6 @@
+[submodule "recipes-sample-ui/sample-ui/files/src/lvgl"]
+	path = recipes-sample-ui/sample-ui/files/src/lvgl
+	url = https://github.com/lvgl/lvgl.git
+[submodule "recipes-sample-ui/sample-ui/files/src/lv_drivers"]
+	path = recipes-sample-ui/sample-ui/files/src/lv_drivers
+	url = https://github.com/lvgl/lv_drivers.git
